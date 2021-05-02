@@ -1,0 +1,25 @@
+# 2021 Vadym Gryshchuk (vadym.gryshchuk@protonmail.com).
+
+# Dataset:
+dataset:
+  name: 'NCALTECH12'   # ['NCALTECH12', 'NCALTECH256']
+#Synaptic Intelligence:
+si:
+  strength_regulator: 100000  # 'c' in the Equation 3.12
+# Habituation
+habituation:
+  decay_rate:  0.001  # in range from 0 to 1
+  top_neurons: 0.02  # only the neurons with the highest activation values are allowed to be habituated. This parameter controls the fraction of neurons that wil be habituated in the f2 layer.
+# Other parameters:
+setup:
+  scenario: 2  # [1, 2]
+  seed: 0
+  number_seeds: 10
+  tasks: 6
+  iterations: 100  # Each iteration includes data from the dataset of size 'batch_size'
+  batch_size: 64
+  gating_proportion_decoder: 0.6  # The fraction of neurons in a decor that are gated (activations are set to zero)
+  z_dimension: 100  # The size of the latent variable representation (VAE)
+  batch_normalization: false  # batch normalization for fully connected layers
+  learning_rate: 0.0001
+
