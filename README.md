@@ -21,7 +21,7 @@ This is the implementation for the upper module of the architecture for Lifelong
 ### Data Collection
 (The extracted features of `NCALTECH12` for testing purposes are already provided.)
 
-1. See the code for the feature extraction module.
+1. See the code for the feature extraction module: https://github.com/VadymV/events_feature_extractor
 2. Place the extracted features into the `store` folder. The following tree should be created: `store` -> `store` -> `datasets` -> [`ncaltech12`, `ncaltech256`] -> [`training`, `testing`]
 
 
