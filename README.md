@@ -24,8 +24,13 @@ This is the implementation for the upper module of the architecture for Lifelong
 1. See the code for the feature extraction module: https://github.com/VadymV/events_feature_extractor
 2. Place the extracted features into the `store` folder. The following tree should be created: `store` -> `store` -> `datasets` -> [`ncaltech12`, `ncaltech256`] -> [`training`, `testing`]
 
+### Experiment with N-Caltech101
 
-### Short learning horizon. Scenario 1 
+1. In`settings.yaml` set the dataset `name` to `NCALTECH101`, the habituation `decay_rate` to `0.3`, the habituation `top_neurons` to `0.05`, `scenario` to `2`, `iterations` to `200`, `batch_size` to `32`, `z_dimension` to `2096`, `batch_normalization` to `true`, `tasks` to `20`, `number_seeds` to `3`, `seed` to `20`, `strength_regulator` to `1000000000`
+2. Run `python run_ncaltech_paper.py`
+
+
+### Short learning horizon. Scenario 1
 
 1. In`settings.yaml` set the dataset `name` to `NCALTECH12`, the habituation `decay_rate` to `0.2`, the habituation `top_neurons` to `0.02`, `scenario` to `1`, `iterations` to `100`, `batch_size` to `64`, `z_dimension` to `100`, `batch_normalization` to `false`, `tasks` to `6`, `number_seeds` to `10`
 2. Run `python run_ncaltech.py`
