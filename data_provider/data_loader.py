@@ -31,6 +31,14 @@ def get_dataset(name, type_='train', capacity=None, directory='./store/datasets'
         dataset = load_ncaltech(train=False if type_ == 'test' else True,
                                 dir_name='{dir}/ncaltech256'.format(dir=directory),
                                 target_transform=target_transform)
+    elif name.lower() == utils.DatasetNames.NCALTECH101.value:
+        dataset = load_ncaltech(train=False if type_ == 'test' else True,
+                                dir_name='{dir}/ncaltech101'.format(dir=directory),
+                                target_transform=target_transform)
+    elif name.lower() == utils.DatasetNames.NMNIST.value:
+        dataset = load_ncaltech(train=False if type_ == 'test' else True,
+                                dir_name='{dir}/nmnist'.format(dir=directory),
+                                target_transform=target_transform)
     else:
         raise ValueError("Check code")
 
@@ -55,6 +63,10 @@ def get_data_batch_strategy(name, data_dir="./store/datasets", verbose=False):
         data_type = 'ncaltech12'
     elif name == "NCALTECH256":
         data_type = 'ncaltech256'
+    elif name == "NCALTECH101":
+        data_type = 'ncaltech101'
+    elif name == "NMNIST":
+        data_type = 'nmnist'
     else:
         raise ValueError('Given undefined experiment: {}'.format(name))
 
@@ -127,6 +139,64 @@ def get_data_incremental_strategy(name, tasks, data_dir="./store/datasets",
                 if not only_test:
                     train_datasets.append(SubDataset(ncaltech256_train, labels, target_transform=target_transform))
                 test_datasets.append(SubDataset(ncaltech256_test, labels, target_transform=target_transform))
+    elif name == 'NCALTECH101':
+        # check for number of tasks
+        if tasks > 101:
+            raise ValueError("Experiment 'NCALTECH101' cannot have more than 101 tasks!")
+        # configurations
+        config = DATASET_CONFIGS['ncaltech101']
+        classes_per_task = int(np.floor(101 / tasks))
+        if not only_config:
+            # prepare permutation to shuffle label-ids (to create different class batches for each random seed)
+            permutation = np.random.permutation(list(range(101)))
+            target_transform = transforms.Lambda(lambda y, x=permutation: int(permutation[y]))
+            # prepare train and test datasets with all classes
+            if not only_test:
+                ncaltech101_train = get_dataset('ncaltech101', type_="train", directory=data_dir,
+                                                verbose=verbose, target_transform=target_transform)
+            ncaltech101_test = get_dataset('ncaltech101', type_="test", directory=data_dir,
+                                           verbose=verbose, target_transform=target_transform)
+            # generate labels-per-task
+            labels_per_task = [
+                list(np.array(range(classes_per_task)) + classes_per_task * task_id) for task_id in range(tasks)
+            ]
+            # split them up into sub-tasks
+            train_datasets = []
+            test_datasets = []
+            for labels in labels_per_task:
+                target_transform = None
+                if not only_test:
+                    train_datasets.append(SubDataset(ncaltech101_train, labels, target_transform=target_transform))
+                test_datasets.append(SubDataset(ncaltech101_test, labels, target_transform=target_transform))
+    elif name == 'NMNIST':
+        # check for number of tasks
+        if tasks > 10:
+            raise ValueError("Experiment 'NMNIST' cannot have more than 10 tasks!")
+        # configurations
+        config = DATASET_CONFIGS['nmnist']
+        classes_per_task = int(np.floor(10 / tasks))
+        if not only_config:
+            # prepare permutation to shuffle label-ids (to create different class batches for each random seed)
+            permutation = np.random.permutation(list(range(10)))
+            target_transform = transforms.Lambda(lambda y, x=permutation: int(permutation[y]))
+            # prepare train and test datasets with all classes
+            if not only_test:
+                nmnist_train = get_dataset('nmnist', type_="train", directory=data_dir,
+                                                verbose=verbose, target_transform=target_transform)
+            nmnist_test = get_dataset('nmnist', type_="test", directory=data_dir,
+                                           verbose=verbose, target_transform=target_transform)
+            # generate labels-per-task
+            labels_per_task = [
+                list(np.array(range(classes_per_task)) + classes_per_task * task_id) for task_id in range(tasks)
+            ]
+            # split them up into sub-tasks
+            train_datasets = []
+            test_datasets = []
+            for labels in labels_per_task:
+                target_transform = None
+                if not only_test:
+                    train_datasets.append(SubDataset(nmnist_train, labels, target_transform=target_transform))
+                test_datasets.append(SubDataset(nmnist_test, labels, target_transform=target_transform))
     else:
         raise RuntimeError('Given undefined experiment: {}'.format(name))
 

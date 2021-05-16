@@ -3,6 +3,22 @@ Generation of figures
 2021 Vadym Gryshchuk (vadym.gryshchuk@protonmail.com).
 """
 
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+y = np.random.rand(100) * 0.2
+y[10] = 0.8
+y[20] = 0.5
+y[30] = 1
+y[50] = 0.6
+y[60] = 0.4
+y[70] = 0.4
+y[80] = 0.6
+x = np.arange(0, 100)
+sns.barplot(x=x, y=y)
+plt.show()
+
+
 import math
 
 import matplotlib.pyplot as plt

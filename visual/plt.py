@@ -113,12 +113,12 @@ def plot_lines(list_with_lines, x_axes=None, line_names=None, colors=None, title
     f, axarr = plt.subplots(1, 1, figsize=size)
     axarr.xaxis.set_ticks(np.arange(int(max(x_axes) / len(x_axes)),
                                     int(max(x_axes) + 1),
-                                    int(max(x_axes) / len(x_axes)) * (5 if len(x_axes) > 16 else 1)
+                                    int(max(x_axes) / len(x_axes)) #* (5 if len(x_axes) > 16 else 2)
                                     )
                           )
     axarr.set_xticklabels(np.arange(int(max(x_axes) / len(x_axes)),
                                     int(max(x_axes) + 1),
-                                    int(max(x_axes) / len(x_axes)) * (5 if len(x_axes) > 16 else 1)
+                                    int(max(x_axes) / len(x_axes)) #* (5 if len(x_axes) > 16 else 2)
                                     ),
                           rotation=0,#45 if max(x_axes) > 12 else 0,
                           fontsize=16*font_scale)

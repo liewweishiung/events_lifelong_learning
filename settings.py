@@ -27,7 +27,7 @@ class Settings:
             # --- dataset ---
             dataset = settings['dataset']
             self.dataset_name = dataset['name']
-            assert self.dataset_name in ["NCALTECH12", "NCALTECH256"]
+            assert self.dataset_name in ["NCALTECH12", "NCALTECH256", "NCALTECH101", "NMNIST"]
 
             # --- setup ---
             setup = settings['setup']
