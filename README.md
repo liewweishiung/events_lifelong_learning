@@ -53,7 +53,7 @@ This is the implementation for the upper module of the architecture for Lifelong
 1. In`settings.yaml` set the dataset `name` to `NCALTECH256`, the habituation `decay_rate` to `0.001`, the habituation `top_neurons` to `0.01`, `scenario` to `2`, `iterations` to `320`, `batch_size` to `256`, `z_dimension` to `257`, `batch_normalization` to `true`, `tasks` to `32`, `number_seeds` to `3`
 2. Run `python run_ncaltech.py`
 
-### Results on N-Caltech101
+### Results on N-Caltech101 (vector image will be provided soon)
 ![Results_NCaltech101](./results.png)
 
 ---
