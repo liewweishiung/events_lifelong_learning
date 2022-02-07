@@ -33,7 +33,7 @@ This is the implementation for the upper module of the architecture for Lifelong
 2. Run `python run_ncaltech_paper.py --settings_file settings_paper.yaml`
 
 ---
-**The provided code uses the code from https://github.com/GMvandeVen/brain-inspired-replay. See the header of each file for more information**
+**The provided code uses the code from https://github.com/GMvandeVen/brain-inspired-replay. See the header of each file for more information.**
 
-
+---
 # torch 1.10.1
