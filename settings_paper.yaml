@@ -2,7 +2,7 @@
 
 # Dataset:
 dataset:
-  name: 'NMNIST'   # ['NCALTECH12', 'NCALTECH256', 'NCALTECH101', 'NMNIST']
+  name: 'NCALTECH101'   # ['NCALTECH12', 'NCALTECH256', 'NCALTECH101', 'NMNIST']
 #Synaptic Intelligence:
 si:
   strength_regulator: None  # 'c' in the Equation 3.12
@@ -16,9 +16,9 @@ habituation:
 setup:
   scenario: 2  # [1, 2]
   seed: 20
-  number_seeds: 5
-  tasks: 5
-  iterations: 3000  # Each iteration includes data from the dataset of size 'batch_size'
+  number_seeds: 1
+  tasks: 20
+  iterations: 200  # Each iteration includes data from the dataset of size 'batch_size'
   batch_size: 20
   gating_proportion_decoder: 0.6  # The fraction of neurons in a decor that are gated (activations are set to zero)
   z_dimension: 4096  # The size of the latent variable representation (VAE)
