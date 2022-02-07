@@ -1,0 +1,15 @@
+
+
+.env
+__pycache__/
+.idea/
+
+docker/
+notebooks/
+/store/datasets/cifar100/
+/store/datasets/ncaltech12_histogram/
+/store/datasets/ncaltech256/
+/store/models/*
+/store/plots/*
+/store/results/*
+/store/datasets/nmnist/
