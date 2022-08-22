@@ -17,8 +17,10 @@ This is the implementation for the upper module of the architecture for Lifelong
 
 ### Installation 
 
-1. `conda env create -n [package_name] python=3.8 anaconda`
-2. `conda install pytorch==1.10.1 torchvision==0.11.2 torchaudio==0.10.1 cpuonly -c pytorch`
+1. `conda env create -n biil python=3.8 anaconda`
+2. `conda activate biil`
+3. `conda install pytorch==1.10.1 torchvision==0.11.2 torchaudio==0.10.1 cpuonly -c pytorch`
+
 
 ### Data Collection
 (The extracted features of `NCALTECH101` for testing purposes are already provided.)
